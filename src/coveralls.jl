@@ -82,6 +82,7 @@ module Coveralls
         elseif lowercase(get(ENV, "TRAVIS", "false")) == "true"
             data["service_job_id"] = ENV["TRAVIS_JOB_ID"]
             data["service_name"] = "travis-ci"
+            data["git"] = parse_git_info(git_info)
             travis_pr = get(ENV, "TRAVIS_PULL_REQUEST", "")
             isempty(travis_pr) || (data["service_pull_request"] = travis_pr)
         elseif lowercase(get(ENV, "JENKINS", "false")) == "true"
