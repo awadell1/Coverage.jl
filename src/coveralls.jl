@@ -104,6 +104,8 @@ module Coveralls
         if get(ENV, "COVERALLS_PARALLEL", "false") == "true"
             data["parallel"] = "true"
         end
+        @info data
+        @info data["repo_token"] != "[secure]"
         return data
     end
 
