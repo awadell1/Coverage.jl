@@ -81,7 +81,7 @@ module Coveralls
             isempty(appveyor_pr) || (data["service_pull_request"] = appveyor_pr)
         elseif lowercase(get(ENV, "TRAVIS", "false")) == "true"
             data["service_job_id"] = ENV["TRAVIS_JOB_ID"]
-            data["service_name"] = "travis-ci"
+            data["service_name"] = "travis-pro"
             data["git"] = parse_git_info(git_info)
             travis_pr = get(ENV, "TRAVIS_PULL_REQUEST", "")
             isempty(travis_pr) || (data["service_pull_request"] = travis_pr)
@@ -201,7 +201,7 @@ module Coveralls
                 get(ENV, "COVERALLS_TOKEN") do
                     get(ENV, "REPO_TOKEN") do #backward compatibility
                         # error unless we are on Travis
-                        if local_submission || (data["service_name"] != "travis-ci")
+                        if local_submission || (data["service_name"] != "travis-ci") || (data["service_name"] != "travis-pro")
                             error("Coveralls submission requires a COVERALLS_TOKEN environment variable")
                         end
                     end
